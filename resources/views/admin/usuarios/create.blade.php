@@ -7,9 +7,9 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create New User</div>
+                    <div class="panel-heading">Criar novo User</div>
                     <div class="panel-body">
-                        <a href="{{ url('/app/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/app/usuarios') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <br />
                         <br />
 
@@ -21,9 +21,9 @@
                             </ul>
                         @endif
 
-                        {!! Form::open(['url' => '/app/users', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['url' => '/app/usuarios', 'class' => 'form-horizontal', 'files' => true]) !!}
 
-                        @include ('Admin.users.form')
+                        @include ('Admin.usuarios.form')
 
                         {!! Form::close() !!}
 

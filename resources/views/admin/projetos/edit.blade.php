@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Edit Projeto #{{ $projeto->id }}</div>
                     <div class="panel-body">
-                        <a href="{{ url('/app/projetos') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/app/projetos') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <br />
                         <br />
 
@@ -28,7 +28,7 @@
                             'files' => true
                         ]) !!}
 
-                        @include ('admin.projetos.form', ['submitButtonText' => 'Update'])
+                        @include ('admin.projetos.form', ['submitButtonText' => 'Atualizar'])
 
                         <input type="hidden" name="state_selected" value="{{ $projeto->estado }}">
                         <input type="hidden" name="city_selected" value="{{ $projeto->cidade }}">

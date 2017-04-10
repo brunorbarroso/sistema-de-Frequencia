@@ -8,9 +8,34 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Session;
+use Auth;
 
 class UsuariosController extends Controller
 {
+    public function me(){
+        $user = User::find( Auth::id() );
+        return view('admin.profile.show', compact('user'));
+    }
+
+    public function editProfile(){
+        $user = User::find( Auth::id() );
+        return view('admin.profile.edit', compact('user'));
+    }
+
+    public function updateProfile( Request $request ){
+        
+        $user = User::findOrFail( Auth::id() );
+        if( $user->funcao == 0 ){
+            $user->update($request->only(['name', 'email']));
+        }else{
+            $user->update($request->all());
+        }
+        
+        Session::flash('flash_message', 'Seu perfil foi atualizado com sucesso!');
+
+        return redirect('home');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,15 +47,15 @@ class UsuariosController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $usuarios = User::where('name', 'LIKE', "%$keyword%")
+            $users = User::where('name', 'LIKE', "%$keyword%")
 				->orWhere('email', 'LIKE', "%$keyword%")
 				
                 ->paginate($perPage);
         } else {
-            $usuarios = User::paginate($perPage);
+            $users = User::paginate($perPage);
         }
 
-        return view('admin.usuarios.index', compact('usuarios'));
+        return view('admin.usuarios.index', compact('users'));
     }
 
     /**

@@ -19,8 +19,13 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['checkRoute', 'auth']], function () {
+	Route::get('app/profile', 'Admin\\UsuariosController@me');
+	Route::get('app/profile/edit', 'Admin\\UsuariosController@editProfile');
+	Route::put('app/profile', 'Admin\\UsuariosController@updateProfile');
 	Route::resource('app/usuarios', 'Admin\\UsuariosController');
 	Route::resource('app/projetos', 'Admin\\ProjetosController');
 	Route::resource('app/criancas', 'Admin\\CriancasController');
+	Route::resource('app/chamadas', 'Admin\\ChamadasController');
+	Route::put('app/fazer_chamda/chamada/{id}', 'Admin\\ChamadasController@fazer_chamada');
 });

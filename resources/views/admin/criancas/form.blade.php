@@ -25,7 +25,7 @@
 </div><div class="form-group {{ $errors->has('contato') ? 'has-error' : ''}}">
     {!! Form::label('contato', 'Contato', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('contato', null, ['class' => 'form-control']) !!}
+        {!! Form::text('contato', null, ['class' => 'form-control phone_with_ddd']) !!}
         {!! $errors->first('contato', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -40,13 +40,13 @@
 <div class="form-group {{ $errors->has('projeto_id') ? 'has-error' : ''}}">
     {!! Form::label('projeto', 'Projeto', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {{ Form::select('projeto', $projetos, null, ['class' => 'form-control']) }}
-        {!! $errors->first('projeto', '<p class="help-block">:message</p>') !!}
+        {{ Form::select('projeto_id', $projetos, null, ['class' => 'form-control']) }}
+        {!! $errors->first('projeto_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-md-offset-4 col-md-4">
-        {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Create', ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Criar', ['class' => 'btn btn-primary']) !!}
     </div>
 </div>

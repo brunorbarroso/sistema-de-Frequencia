@@ -31,5 +31,9 @@ class Projeto extends Model
         return $this->BelongsTo('App\Cidade', 'cidade_id', 'id');
     }
 
+    public function chamadas(){
+        return $this->BelongsTo('App\Chamda', 'chamada_id', 'id');
+    }
+
     
 }

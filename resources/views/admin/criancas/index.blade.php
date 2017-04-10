@@ -10,12 +10,12 @@
                     <div class="panel-heading">Criancas</div>
                     <div class="panel-body">
                         <a href="{{ url('/app/criancas/create') }}" class="btn btn-success btn-sm" title="Add New Crianca">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            <i class="fa fa-plus" aria-hidden="true"></i> Criar novo
                         </a>
 
                         {!! Form::open(['method' => 'GET', 'url' => '/app/criancas', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search...">
+                            <input type="text" class="form-control" name="search" placeholder="Buscar...">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="fa fa-search"></i>
@@ -39,18 +39,18 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->nomecompleto }}</td><td>{{ $item->datanascimento }}</td><td>{{ $item->idade }}</td>
                                         <td>
-                                            <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                            <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/app/criancas', $item->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
                                                         'title' => 'Delete Crianca',
-                                                        'onclick'=>'return confirm("Confirm delete?")'
+                                                        'onclick'=>'return confirm("Confirmar exclusão?")'
                                                 )) !!}
                                             {!! Form::close() !!}
                                         </td>
