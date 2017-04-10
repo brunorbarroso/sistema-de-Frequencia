@@ -16,7 +16,7 @@ class CreateProjetosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->text('estado');
-            $table->text('cidade');
+            $table->text('cidade_id');
             $table->text('bairro');
             $table->timestamps();
         });

@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Crianca extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'posts';
+    protected $table = 'criancas';
 
     /**
     * The database primary key value.
@@ -25,7 +25,10 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'content', 'category'];
+    protected $fillable = ['nomecompleto', 'datanascimento', 'idade', 'mae', 'contato', 'sexo'];
 
+    public function projetos(){
+        return $this->BelongsTo('App\Projeto', 'projeto_id', 'id');
+    }
     
 }

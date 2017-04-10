@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Post;
+use App\Crianca;
+use App\Projeto;
 use Illuminate\Http\Request;
 use Session;
 
-class PostsController extends Controller
+class CriancasController extends Controller
 {
+    protected $projetos;
+
+    public function __construct(){ 
+        $this->projetos = Projeto::lists('nome', 'id');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,16 +29,19 @@ class PostsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $posts = Post::where('title', 'LIKE', "%$keyword%")
-				->orWhere('content', 'LIKE', "%$keyword%")
-				->orWhere('category', 'LIKE', "%$keyword%")
+            $criancas = Crianca::where('nomecompleto', 'LIKE', "%$keyword%")
+				->orWhere('datanascimento', 'LIKE', "%$keyword%")
+				->orWhere('idade', 'LIKE', "%$keyword%")
+				->orWhere('mae', 'LIKE', "%$keyword%")
+				->orWhere('contato', 'LIKE', "%$keyword%")
+				->orWhere('sexo', 'LIKE', "%$keyword%")
 				
                 ->paginate($perPage);
         } else {
-            $posts = Post::paginate($perPage);
+            $criancas = Crianca::paginate($perPage);
         }
-
-        return view('admin.posts.index', compact('posts'));
+                $projetos = $this->projetos;$projetos = $this->projetos;
+        return view('admin.criancas.index', compact('criancas', 'projetos'));
     }
 
     /**
@@ -41,7 +51,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $projetos = $this->projetos;
+        return view('admin.criancas.create', compact('projetos'));
     }
 
     /**
@@ -53,14 +64,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        
         $requestData = $request->all();
         
-        Post::create($requestData);
+        Crianca::create($requestData);
 
-        Session::flash('flash_message', 'Post added!');
+        Session::flash('flash_message', 'Crianca added!');
 
-        return redirect('admin/posts');
+        return redirect('app/criancas');
     }
 
     /**
@@ -72,9 +82,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-
-        return view('admin.posts.show', compact('post'));
+        $crianca = Crianca::findOrFail($id);
+        $projetos = $this->projetos;
+        return view('admin.criancas.show', compact('crianca','projetos'));
     }
 
     /**
@@ -86,9 +96,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-
-        return view('admin.posts.edit', compact('post'));
+        $crianca = Crianca::findOrFail($id);
+        $projetos = $this->projetos;    
+        return view('admin.criancas.edit', compact('crianca', 'projetos'));
     }
 
     /**
@@ -104,12 +114,12 @@ class PostsController extends Controller
         
         $requestData = $request->all();
         
-        $post = Post::findOrFail($id);
-        $post->update($requestData);
+        $crianca = Crianca::findOrFail($id);
+        $crianca->update($requestData);
 
-        Session::flash('flash_message', 'Post updated!');
+        Session::flash('flash_message', 'Crianca updated!');
 
-        return redirect('admin/posts');
+        return redirect('app/criancas');
     }
 
     /**
@@ -121,10 +131,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        Post::destroy($id);
+        Crianca::destroy($id);
 
-        Session::flash('flash_message', 'Post deleted!');
+        Session::flash('flash_message', 'Crianca deleted!');
 
-        return redirect('admin/posts');
+        return redirect('app/criancas');
     }
 }

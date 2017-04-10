@@ -18,5 +18,9 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::resource('admin/posts', 'Admin\\PostsController');
-Route::resource('app/projetos', 'Admin\\ProjetosController');
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('app/usuarios', 'Admin\\UsuariosController');
+	Route::resource('app/projetos', 'Admin\\ProjetosController');
+	Route::resource('app/criancas', 'Admin\\CriancasController');
+});
