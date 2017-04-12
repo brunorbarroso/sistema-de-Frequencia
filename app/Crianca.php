@@ -25,7 +25,7 @@ class Crianca extends Model
      *
      * @var array
      */
-    protected $fillable = ['nomecompleto', 'datanascimento', 'idade', 'mae', 'contato', 'sexo', 'projeto_id'];
+    protected $fillable = ['nomecompleto', 'datanascimento', 'foto', 'mae', 'contato', 'sexo', 'projeto_id'];
 
     public function projetos(){
         return $this->BelongsTo('App\Projeto', 'projeto_id', 'id');

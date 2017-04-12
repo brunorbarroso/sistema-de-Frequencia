@@ -4,16 +4,33 @@
         {!! Form::text('nomecompleto', null, ['class' => 'form-control']) !!}
         {!! $errors->first('nomecompleto', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('datanascimento') ? 'has-error' : ''}}">
+</div>
+<div class="form-group {{ $errors->has('datanascimento') ? 'has-error' : ''}}">
     {!! Form::label('datanascimento', 'Data nascimento', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::date('datanascimento', null, ['class' => 'form-control']) !!}
         {!! $errors->first('datanascimento', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('idade') ? 'has-error' : ''}}">
+</div>
+
+<div class="form-group {{ $errors->has('foto') ? 'has-error' : ''}}">
+    {!! Form::label('foto', 'Foto', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        @if(!empty($crianca->foto))
+            {!! Form::hidden('foto_name', $crianca->foto, ['class'=>'form-control', 'id'=>'item-image']) !!}
+            <a href='{{asset("$crianca->foto")}}' target="_blank" class="item-image"><img src='{{asset("uploads/fotos/$crianca->foto")}}' width="150"></a>
+            <i class="fa fa-trash fa-2x item-image" id="delete-img" style="cursor: pointer;"></i>
+        @endif
+        {!! Form::file('foto', null, ['class' => 'form-control']) !!}
+        {!! $errors->first('foto', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
+
+
+<div class="form-group {{ $errors->has('idade') ? 'has-error' : ''}}">
     {!! Form::label('idade', 'Idade', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::number('idade', null, ['class' => 'form-control']) !!}
+        {!! Form::text('idade', getIdade(getData($crianca->datanascimento)), ['class' => 'form-control', 'disabled'=>'disabled']) !!}
         {!! $errors->first('idade', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('mae') ? 'has-error' : ''}}">

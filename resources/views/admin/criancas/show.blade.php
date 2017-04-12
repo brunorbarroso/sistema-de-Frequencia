@@ -33,7 +33,11 @@
                                     <tr>
                                         <th>ID</th><td>{{ $crianca->id }}</td>
                                     </tr>
-                                    <tr><th> Nomecompleto </th><td> {{ $crianca->nomecompleto }} </td></tr><tr><th> Datanascimento </th><td> {{ $crianca->datanascimento }} </td></tr><tr><th> Idade </th><td> {{ $crianca->idade }} </td></tr>
+                                    <tr><th> Nome completo </th><td> {{ $crianca->nomecompleto }} </td></tr>
+                                    <tr><th> Data de nascimento </th><td> {{ getData($crianca->datanascimento) }} </td></tr>
+                                    <tr><th> Idade </th><td> {{ getIdade(getData($crianca->datanascimento)) }} </td></tr>
+                                    <tr><th> Projeto </th><td> {{ $crianca->projetos->nome }} </td></tr>
+                                    <tr><th> Foto </th><td> {!! getImagem($crianca->foto, 100) !!} </td></tr>
                                 </tbody>
                             </table>
                         </div>

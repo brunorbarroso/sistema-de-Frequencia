@@ -74,7 +74,7 @@ class ProjetosController extends Controller
      */
     public function show($id)
     {
-        $projeto = Projeto::findOrFail($id)->with('cidades')->first();
+        $projeto = Projeto::with('cidades')->where('id',$id)->first();
 
         return view('admin.projetos.show', compact('projeto', 'local'));
     }

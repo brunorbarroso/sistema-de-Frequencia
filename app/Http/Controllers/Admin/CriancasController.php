@@ -29,7 +29,7 @@ class CriancasController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $criancas = Crianca::where('nomecompleto', 'LIKE', "%$keyword%")
+            $criancas = Crianca::with('projetos')->where('nomecompleto', 'LIKE', "%$keyword%")
 				->orWhere('datanascimento', 'LIKE', "%$keyword%")
 				->orWhere('idade', 'LIKE', "%$keyword%")
 				->orWhere('mae', 'LIKE', "%$keyword%")
@@ -64,9 +64,20 @@ class CriancasController extends Controller
      */
     public function store(Request $request)
     {
-        $requestData = $request->all();
+        $fields = $request->all();
         
-        Crianca::create($requestData);
+        if ($request->hasFile('foto')) {
+            $foto = $this->salvar_foto( $fields['foto'] );
+        }
+        
+        $crianca = Crianca::create(['nomecompleto'=>$fields['nomecompleto'],
+                            'datanascimento'=>$fields['datanascimento'],
+                            'idade'=>$fields['idade'],
+                            'mae'=>$fields['mae'],
+                            'contato'=>$fields['contato'], 
+                            'sexo'=>$fields['sexo'], 
+                            'projeto_id'=>$fields['projeto_id'],
+                            'foto'=>isset($foto)?$foto:""]);
 
         Session::flash('flash_message', 'Crianca added!');
 
@@ -112,10 +123,23 @@ class CriancasController extends Controller
     public function update($id, Request $request)
     {
         
-        $requestData = $request->all();
-        
-        $crianca = Crianca::findOrFail($id);
-        $crianca->update($requestData);
+        $fields = $request->all();
+
+        if ($request->hasFile('foto')) {
+            $foto = $this->salvar_foto( $fields['foto'] );
+        }else if(!empty($fields['foto_name'])){
+            $foto = $fields['foto_name'];
+        }
+
+		$crianca = Crianca::find($id);
+        $crianca->fill(['nomecompleto'=>$fields['nomecompleto'],
+                        'datanascimento'=>$fields['datanascimento'],
+                        'idade'=>$fields['idade'],
+                        'mae'=>$fields['mae'],
+                        'contato'=>$fields['contato'], 
+                        'sexo'=>$fields['sexo'], 
+                        'projeto_id'=>$fields['projeto_id'],
+                        'foto'=>isset($foto)?$foto:""]);
 
         Session::flash('flash_message', 'Crianca updated!');
 
@@ -137,4 +161,5 @@ class CriancasController extends Controller
 
         return redirect('app/criancas');
     }
+
 }

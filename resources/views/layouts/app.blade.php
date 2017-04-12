@@ -69,6 +69,13 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#delete-img').on('click', function(){
+                $('.item-image').each(function(idx, item){
+                    $(item).remove()
+                })
+                $('input[name=foto_name]').val("")
+            })
+
             $('.phone_with_ddd').mask('(00) 0000-0000');
             $('#uf').ufs({
                 onChange: function(uf){
