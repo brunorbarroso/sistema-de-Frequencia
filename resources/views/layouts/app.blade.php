@@ -114,7 +114,7 @@
 <footer>
     <div class="container">
         <div class="row">        
-            Sistema desenvolvido com muito &hearts; por <a href="http://fb.com/brunobarrosor">Bruno Barroso</a>
+            Sistema desenvolvido com muito &hearts; por <a href="http://fb.com/brunobarrosor">Bruno Barroso (namorado da Mari)</a>
         </div>
         <div class="row">
             © Copyright 2017
