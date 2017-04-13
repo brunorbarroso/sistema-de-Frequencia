@@ -16,10 +16,9 @@ class CreateCriancasTable extends Migration
             $table->increments('id');
             $table->string('nomecompleto');
             $table->string('datanascimento');
-            $table->string('idade');
             $table->string('mae');
             $table->string('contato');
-            $table->string('sexo');
+            $table->integer('sexo');
             $table->integer('projeto_id');
             $table->timestamps();
         });

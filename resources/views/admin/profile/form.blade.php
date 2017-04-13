@@ -11,14 +11,14 @@
         {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-@if( Auth::user()->funcao == 1 )
-<div class="form-group {{ $errors->has('funcao') ? 'has-error' : ''}}">
-    {!! Form::label('funcao', 'Funcao', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::select('funcao', ['Tio', ' Coordenador(a)'], null, ['class' => 'form-control']) !!}
-        {!! $errors->first('funcao', '<p class="help-block">:message</p>') !!}
+@if( !Auth::guest() && Auth::user()->funcao == 1 )
+    <div class="form-group {{ $errors->has('funcao') ? 'has-error' : ''}}">
+        {!! Form::label('funcao', 'Funcao', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::select('funcao', ['Tio', ' Coordenador(a)'], null, ['class' => 'form-control']) !!}
+            {!! $errors->first('funcao', '<p class="help-block">:message</p>') !!}
+        </div>
     </div>
-</div>
 @endif
 
 <div class="form-group">

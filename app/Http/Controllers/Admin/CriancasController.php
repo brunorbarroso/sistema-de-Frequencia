@@ -9,6 +9,7 @@ use App\Crianca;
 use App\Projeto;
 use Illuminate\Http\Request;
 use Session;
+use PDF;
 
 class CriancasController extends Controller
 {
@@ -16,6 +17,7 @@ class CriancasController extends Controller
 
     public function __construct(){ 
         $this->projetos = Projeto::lists('nome', 'id');
+        $this->projetos->prepend('Filtrar por projeto', '');
     }
 
     /**
@@ -26,22 +28,79 @@ class CriancasController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $project_id = $request->get('project');
+        
+        $perPage = 20;
 
-        if (!empty($keyword)) {
-            $criancas = Crianca::with('projetos')->where('nomecompleto', 'LIKE', "%$keyword%")
+        if (!empty($keyword) && !empty($project_id)) {
+            $criancas = Crianca::with('projetos')
+                ->where('nomecompleto', 'LIKE', "%$keyword%")
+				->where('projeto_id', '=', $project_id)
+                ->paginate($perPage);
+        } else if(!empty($project_id))
+        {
+            $criancas = Crianca::with('projetos')
+                ->where('projeto_id', '=', $project_id)
+                ->paginate($perPage);
+        }
+            else if (!empty($keyword)) 
+        {
+            $criancas = Crianca::with('projetos')
+                ->where('nomecompleto', 'LIKE', "%$keyword%")
 				->orWhere('datanascimento', 'LIKE', "%$keyword%")
 				->orWhere('idade', 'LIKE', "%$keyword%")
 				->orWhere('mae', 'LIKE', "%$keyword%")
 				->orWhere('contato', 'LIKE', "%$keyword%")
 				->orWhere('sexo', 'LIKE', "%$keyword%")
-				
                 ->paginate($perPage);
-        } else {
+        }
+            else 
+        {
             $criancas = Crianca::paginate($perPage);
         }
-                $projetos = $this->projetos;$projetos = $this->projetos;
+        
+        $projetos = $this->projetos;
+
         return view('admin.criancas.index', compact('criancas', 'projetos'));
+    }
+
+     public function gerarPdf(Request $request)
+    {
+        $keyword = $request->get('search');
+        $project_id = $request->get('project');
+
+        if (!empty($keyword) && !empty($project_id)) {
+            $criancas = Crianca::with('projetos')
+                ->where('nomecompleto', 'LIKE', "%$keyword%")
+				->where('projeto_id', '=', $project_id)
+                ->orderBy('nomecompleto', 'ASC')
+                ->get();
+        } else if (!empty($project_id)) {
+            $criancas = Crianca::with('projetos')
+                ->where('projeto_id', '=', $project_id)
+                ->orderBy('nomecompleto', 'ASC')
+                ->get();
+        } else if (!empty($keyword)) {
+            $criancas = Crianca::with('projetos')
+                ->where('nomecompleto', 'LIKE', "%$keyword%")
+				->orWhere('datanascimento', 'LIKE', "%$keyword%")
+				->orWhere('mae', 'LIKE', "%$keyword%")
+				->orWhere('contato', 'LIKE', "%$keyword%")
+				->orWhere('sexo', 'LIKE', "%$keyword%")
+                ->orderBy('nomecompleto', 'ASC')
+                ->get();
+        } else {
+            $criancas = Crianca::orderBy('nomecompleto', 'ASC')->get();
+        }
+
+        if(count($criancas)==0){
+            Session::flash('flash_message', 'Nenhuma criança na lista de impressão!');
+            return redirect('app/criancas');
+        }
+
+        //return view('admin.criancas.pdf', compact('criancas', 'projetos'));
+        $pdf = PDF::loadView('admin.criancas.pdf', compact('criancas') );
+        return $pdf->download(md5( date('Y-m-d H:i:s') ).'.pdf');
     }
 
     /**
@@ -72,7 +131,6 @@ class CriancasController extends Controller
         
         $crianca = Crianca::create(['nomecompleto'=>$fields['nomecompleto'],
                             'datanascimento'=>$fields['datanascimento'],
-                            'idade'=>$fields['idade'],
                             'mae'=>$fields['mae'],
                             'contato'=>$fields['contato'], 
                             'sexo'=>$fields['sexo'], 
@@ -134,7 +192,6 @@ class CriancasController extends Controller
 		$crianca = Crianca::find($id);
         $crianca->fill(['nomecompleto'=>$fields['nomecompleto'],
                         'datanascimento'=>$fields['datanascimento'],
-                        'idade'=>$fields['idade'],
                         'mae'=>$fields['mae'],
                         'contato'=>$fields['contato'], 
                         'sexo'=>$fields['sexo'], 

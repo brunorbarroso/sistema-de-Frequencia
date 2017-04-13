@@ -28,7 +28,8 @@ class ProjetosController extends Controller
 				->orWhere('bairro', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
         } else {
-            $projetos = Projeto::paginate($perPage);
+            $projetos = Projeto::join('cidades', 'cidades.id', '=', 'cidade_id')
+            ->paginate($perPage);
         }
 
         return view('admin.projetos.index', compact('projetos'));

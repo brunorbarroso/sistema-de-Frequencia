@@ -17,9 +17,12 @@ class UsuariosController extends Controller
         return view('admin.profile.show', compact('user'));
     }
 
-    public function editProfile(){
-        $user = User::find( Auth::id() );
-        return view('admin.profile.edit', compact('user'));
+    public function editProfile( $user_id ){
+        if( $user_id == Auth::id() )
+            $user = User::find( Auth::id() );
+            return view('admin.profile.edit', compact('user'));
+        
+        return redirect('home');
     }
 
     public function updateProfile( Request $request ){

@@ -17,6 +17,17 @@ if( !function_exists( 'getData' ) ) {
     }
 }
 
+if( !function_exists( 'getStatusChamada' ) ) {
+    
+    function getStatusChamada( $id ){
+        switch($id){
+            case 0: return "<span class='label label-danger'>Não finalizada</span>"; break;
+            case 1: return "<span class='label label-success'>Concluida</span>"; break;
+            default: return "<span class='label label-danger'>Não finalizada</span>"; break;
+        }
+    }
+}
+
 if( !function_exists( 'getCrianca' ) ) {
     
     function criancaIsChecked( $presencas, $crianca_id ){

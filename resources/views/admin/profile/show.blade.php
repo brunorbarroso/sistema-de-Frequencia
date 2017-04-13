@@ -11,7 +11,7 @@
                     <div class="panel-body">
 
                         <a href="{{ url('/home') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
-                        <a href="{{ url('/app/profile/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                        <a href="{{ url('/app/profile/'.$user->id.'/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
                         {!! Form::open([
                             'method'=>'DELETE',
                             'url' => ['app/usuarios', $user->id],
