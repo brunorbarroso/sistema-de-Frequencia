@@ -23,10 +23,11 @@ class ProjetosController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $projetos = Projeto::where('nome', 'LIKE', "%$keyword%")
+            $projetos = Projeto::with('cidades')
+                ->where('nome', 'LIKE', "%$keyword%")
 				->orWhere('estado', 'LIKE', "%$keyword%")
-				->orWhere('cidade', 'LIKE', "%$keyword%")
 				->orWhere('bairro', 'LIKE', "%$keyword%")
+                ->orWhere('nome', 'LIKE', "%$keyword%")
 				
                 ->paginate($perPage);
         } else {

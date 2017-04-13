@@ -31,7 +31,7 @@
                         @include ('admin.projetos.form', ['submitButtonText' => 'Atualizar'])
 
                         <input type="hidden" name="state_selected" value="{{ $projeto->estado }}">
-                        <input type="hidden" name="city_selected" value="{{ $projeto->cidade }}">
+                        <input type="hidden" name="city_selected" value="{{ $projeto->cidade_id }}">
 
                         {!! Form::close() !!}
 

@@ -16,7 +16,7 @@
 <div class="form-group {{ $errors->has('foto') ? 'has-error' : ''}}">
     {!! Form::label('foto', 'Foto', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        @if(!empty($crianca->foto))
+        @if(isset($crianca))
             {!! Form::hidden('foto_name', $crianca->foto, ['class'=>'form-control', 'id'=>'item-image']) !!}
             <a href='{{asset("$crianca->foto")}}' target="_blank" class="item-image"><img src='{{asset("uploads/fotos/$crianca->foto")}}' width="150"></a>
             <i class="fa fa-trash fa-2x item-image" id="delete-img" style="cursor: pointer;"></i>

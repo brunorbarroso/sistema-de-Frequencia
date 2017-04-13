@@ -30,14 +30,22 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Nome</th><th>Estado</th><th>Bairro</th><th>Actions</th>
+                                        <th>ID</th>
+                                        <th>Nome</th>
+                                        <th>Estado</th>
+                                        <th>Cidade</th>
+                                        <th>Bairro</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($projetos as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->nome }}</td><td>{{ $item->estado }}</td><td>{{ $item->bairro }}</td>
+                                        <td>{{ $item->nome }}</td>
+                                        <td>{{ $item->estado }}</td>
+                                        <td>{{ $item->cidades->nome }}</td>
+                                        <td>{{ $item->bairro }}</td>
                                         <td>
                                             <a href="{{ url('/app/projetos/' . $item->id) }}" title="View Projeto"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
                                             <a href="{{ url('/app/projetos/' . $item->id . '/edit') }}" title="Edit Projeto"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>

@@ -77,19 +77,13 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#delete-img').on('click', function(){
-                $('.item-image').each(function(idx, item){
-                    $(item).remove()
-                })
-                $('input[name=foto_name]').val("")
-            })
 
-            $('.phone_with_ddd').mask('(00) 0000-0000');
             $('#uf').ufs({
                 onChange: function(uf){
                     $('#city').cidades({uf: uf});      
                 }
             })
+
             setTimeout(function(){ 
                 state = $("input[name='state_selected']").val()
                 city  = $("input[name='city_selected']").val()
@@ -100,13 +94,22 @@
                     }
                 });
                 setTimeout(function(){
-                    $("select[name='cidade'] option" ).each(function(idx, item) {
+                    $("select[name='cidade_id'] option" ).each(function(idx, item) {
                         if( $(item).val() == city ) {
-                            $("select[name='cidade']").val(item.value)
+                            $("select[name='cidade_id']").val(item.value)
                         }
                     });
                 }, 1000)
             }, 500);
+
+            $('#delete-img').on('click', function(){
+                $('.item-image').each(function(idx, item){
+                    $(item).remove()
+                })
+                $('input[name=foto_name]').val("")
+            })
+
+            $('.phone_with_ddd').mask('(00) 0000-0000');
         });
     </script>
 

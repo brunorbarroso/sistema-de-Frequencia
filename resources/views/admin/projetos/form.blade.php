@@ -13,7 +13,7 @@
 </div><div class="form-group {{ $errors->has('cidade') ? 'has-error' : ''}}">
     {!! Form::label('cidade', 'Cidade', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        <select name="cidade_id" id="city" class="form-control" placeholder="Escolha a cidade" value="{{ old('cidade') }}"></select>
+        <select name="cidade_id" id="city" class="form-control" placeholder="Escolha a cidade" value="{{ old('cidade_id') }}"></select>
         {!! $errors->first('cidade', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('bairro') ? 'has-error' : ''}}">
