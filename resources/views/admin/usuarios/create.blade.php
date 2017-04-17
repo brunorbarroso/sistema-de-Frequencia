@@ -23,7 +23,7 @@
 
                         {!! Form::open(['url' => '/app/usuarios', 'class' => 'form-horizontal', 'files' => true]) !!}
 
-                        @include ('Admin.usuarios.form')
+                        @include ('admin.usuarios.form')
 
                         {!! Form::close() !!}
 
