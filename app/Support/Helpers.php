@@ -52,7 +52,7 @@ if( !function_exists( 'getImagem' ) ) {
 if( !function_exists( 'getIdade' ) ) {
     
     function getIdade( $datanascimento ){
-        return 0;
+        #return 0;
         $date = new DateTime( $datanascimento ); 
         $interval = $date->diff( new DateTime() );
         return $interval->format( '%Y Anos, %m Meses e %d Dias' );
