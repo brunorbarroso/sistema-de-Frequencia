@@ -51,13 +51,31 @@ if( !function_exists( 'getImagem' ) ) {
 
 if( !function_exists( 'getIdade' ) ) {
     
-    function getIdade( $datanascimento ){
-        #return 0;
-        #$timestamp = strtotime($datanascimento);
-        $date = new DateTime($datanascimento); 
-        $interval = $date->diff( new DateTime() );
-        return $interval->format( '%Y Anos, %m Meses e %d Dias' );
+    function getIdade( $data_nasc ){
+        $data_nasc=explode("/", $data_nasc);
+        $data=date("d/m/Y");
+        $data=explode("/",$data);
+        
+        $dt_nascimento = $data_nasc[0].'-'.$data_nasc[1].'-'.$data_nasc[2];
+        $dt_hoje = $data[2].'-'.$data[1].'-'.$data[0];
+
+        $diff = abs(strtotime($dt_hoje) - strtotime($dt_nascimento));
+
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+        if((int)$years > 0){
+            return "$years ano(s), $months mes(es), $days dia(s)"; //, $years, $months, $days);
+        } else if((int)$years == 0 && (int)$months > 0){
+            return "$months mes(es), $days dia(s)";
+        } else if((int)$years == 0 && (int)$months == 0 && (int)$days > 0){
+            return "$days dia(s)";
+        }
+
     }
 }
+
+
 
 

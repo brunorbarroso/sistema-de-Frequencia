@@ -8,7 +8,7 @@
 <div class="form-group {{ $errors->has('datanascimento') ? 'has-error' : ''}}">
     {!! Form::label('datanascimento', 'Data nascimento', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::date('datanascimento', null, ['class' => 'form-control']) !!}
+        {!! Form::text('datanascimento', null, ['class' => 'form-control date']) !!}
         {!! $errors->first('datanascimento', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

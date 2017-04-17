@@ -116,7 +116,7 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->nomecompleto }}</td>
-                                        <td>{{ getData($item->datanascimento) }}</td>
+                                        <td>{{ $item->datanascimento }}</td>
                                         <td>{{ getIdade($item->datanascimento) }}</td>
                                         <td>{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
                                         <td>
