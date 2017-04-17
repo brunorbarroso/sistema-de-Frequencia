@@ -28,7 +28,7 @@
                             'files' => true
                         ]) !!}
 
-                        @include ('Admin.profile.form', ['submitButtonText' => 'Atualizar'])
+                        @include ('admin.profile.form', ['submitButtonText' => 'Atualizar'])
 
                         {!! Form::close() !!}
 
