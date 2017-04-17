@@ -35,7 +35,7 @@
                                     </tr>
                                     <tr><th> Nome completo </th><td> {{ $crianca->nomecompleto }} </td></tr>
                                     <tr><th> Data de nascimento </th><td> {{ getData($crianca->datanascimento) }} </td></tr>
-                                    <tr><th> Idade </th><td> {{ getIdade(getData($crianca->datanascimento)) }} </td></tr>
+                                    <tr><th> Idade </th><td> {{ getIdade($crianca->datanascimento) }} </td></tr>
                                     <tr><th> Projeto </th><td> {{ Html::link( URL::to('/app/criancas?project='.$crianca->projetos->id), $crianca->projetos->nome ) }} </td></tr>
                                     <?php if(isset($crianca->foto) && !empty($crianca->foto)): ?>
                                         <tr><th> Foto </th><td> {!! getImagem($crianca->foto, 100) !!} </td></tr>

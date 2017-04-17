@@ -30,7 +30,7 @@
 <div class="form-group {{ $errors->has('idade') ? 'has-error' : ''}}">
     {!! Form::label('idade', 'Idade', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('idade', getIdade(getData($crianca->datanascimento)), ['class' => 'form-control', 'disabled'=>'disabled']) !!}
+        {!! Form::text('idade', getIdade($crianca->datanascimento), ['class' => 'form-control', 'disabled'=>'disabled']) !!}
         {!! $errors->first('idade', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
