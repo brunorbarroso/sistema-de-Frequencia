@@ -113,7 +113,6 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Nome completo</th>
                                         <th>Data de nascimento</th>
                                         <th>Idade</th>
@@ -124,7 +123,6 @@
                                 @if(count($criancas)>0)
                                     @foreach($criancas as $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
                                             <td>{{ $item->nomecompleto }}</td>
                                             <td>{{ $item->datanascimento }}</td>
                                             <td>{{ getIdade($item->datanascimento) }}</td>

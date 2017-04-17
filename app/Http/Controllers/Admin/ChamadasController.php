@@ -10,6 +10,8 @@ use App\Crianca;
 use App\Projeto;
 use App\Chamada_crianca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 
 class ChamadasController extends Controller
@@ -73,10 +75,18 @@ class ChamadasController extends Controller
     {
         
         $requestData = $request->all();
-        
-        Chamada::create($requestData);
 
-        Session::flash('flash_message', 'Chamada added!');
+        $rules = array('datachamada' => 'required', 'projeto_id' => 'required');
+        $validator = Validator::make($requestData, $rules, ['required'=>'O campo :attribute é obrigatório']);
+
+        if ($validator->fails()) {
+            return Redirect::to('app/chamadas')
+                ->withErrors($validator);
+        } else {
+            Chamada::create($requestData);
+            Session::flash('flash_message', 'Chamada criada com sucesso!');
+            return redirect('app/chamadas');
+        }
 
         return redirect('app/chamadas');
     }
@@ -126,11 +136,21 @@ class ChamadasController extends Controller
     {
         
         $requestData = $request->all();
-        
-        $chamada = Chamada::findOrFail($id);
-        $chamada->update($requestData);
 
-        Session::flash('flash_message', 'Chamada updated!');
+
+        $rules = array('datachamada' => 'required', 'projeto_id' => 'required');
+
+        $validator = Validator::make($requestData, $rules, ['required'=>'O campo :attribute é obrigatório']);
+
+        if ($validator->fails()) {
+            return Redirect::to('app/chamadas')
+                ->withErrors($validator);
+        } else {
+            $chamada = Chamada::findOrFail($id);
+            $chamada->update($requestData);
+            Session::flash('flash_message', 'Chamada atualizada com sucesso!');
+            return redirect('app/chamadas');
+        }
 
         return redirect('app/chamadas');
     }

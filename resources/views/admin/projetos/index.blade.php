@@ -30,7 +30,6 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Nome</th>
                                         <th>Estado</th>
                                         <th>Cidade</th>
@@ -42,7 +41,6 @@
                                 @if(count($projetos)>0)
                                     @foreach($projetos as $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
                                             <td>{{ $item->nome }}</td>
                                             <td>{{ $item->estado }}</td>
                                             <td>{{ $item->cidades->nome }}</td>

@@ -1,7 +1,7 @@
 <div class="form-group {{ $errors->has('datachamada') ? 'has-error' : ''}}">
     {!! Form::label('datachamada', 'Data chamada', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::date('datachamada', null, ['class' => 'form-control']) !!}
+        {!! Form::text('datachamada', null, ['class' => 'form-control date']) !!}
         {!! $errors->first('datachamada', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

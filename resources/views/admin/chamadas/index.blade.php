@@ -9,6 +9,21 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Chamadas</div>
                     <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if( $errors->all() )
+                                    <div class="alert alert-danger">
+                                        <strong>Ops!</strong> Algo deu errado. Verifique o erro abaixo.<br><br>
+                                        {!! Html::ul($errors->all()) !!}
+                                    </div>
+                                @endif
+                                @if (Session::has('flash_message'))
+                                    <div class="alert alert-info">{{ Session::get('flash_message') }}</div>
+                                @endif
+                            </div>
+                        </div>
+
                         <a href="{{ url('/app/chamadas/create') }}" class="btn btn-success btn-sm" title="Add New Chamada">
                             <i class="fa fa-plus" aria-hidden="true"></i> Criar novo
                         </a>
@@ -30,7 +45,6 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Projeto</th>
                                         <th>Data chamada</th>
                                         <th>Status</th>
@@ -41,7 +55,6 @@
                                 @if(count($chamadas)>0)
                                     @foreach($chamadas as $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
                                             <td>{{ $item->projeto->nome }}</td>
                                             <td>{{ getData($item->datachamada) }}</td>
                                             <td>{!! getStatusChamada($item->realizada) !!}</td>
