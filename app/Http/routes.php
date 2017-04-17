@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,14 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/newuser', function () {
+    return User::create([
+        'name' => 'Jane',
+        'email' => 'john@jane.com',
+        'password' => bcrypt('password'),
+    ]);
+});
 
 Route::group(['middleware' => ['checkRoute', 'auth']], function () {
 	Route::get('app/profile', 'Admin\\UsuariosController@me');

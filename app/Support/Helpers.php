@@ -48,6 +48,30 @@ if( !function_exists( 'getImagem' ) ) {
     }
 }
 
+if( !function_exists( 'getTotalFaltas' ) ) {
+    
+    function getTotalFaltas( $crianca_id ){
+        $resultado = \DB::table('lista_faltas')
+                     ->select('total_faltas')
+                     ->where('crianca_id', '=', $crianca_id)
+                     ->distinct()
+                     ->first();
+        if(isset($resultado->total_faltas))
+            return $resultado->total_faltas;
+        
+        return 0;
+    }
+}
+
+function uuid()
+{
+    $t=explode(" ",microtime());
+    return sprintf( '%04x-%08s-%04s-%04x%04x',
+        rand(10,100),
+        substr("00000000".dechex($t[1]),-8),
+        substr("0000".dechex(round($t[0]*65536)),-4),
+        mt_rand(0,0xffff), mt_rand(0,0xffff));
+}
 
 if( !function_exists( 'getIdade' ) ) {
     

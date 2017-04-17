@@ -34,7 +34,7 @@
                                         <th>ID</th><td>{{ $chamada->id }}</td>
                                     </tr>
                                     <tr>
-                                        <th> Data chamada </th><td> {{ getData($chamada->datachamada) }} </td>
+                                        <th> Data chamada </th><td> {{ $chamada->datachamada }} </td>
                                     </tr>
                                     <tr>
                                         <th> Projeto </th><td> {{ $chamada->projeto->nome }} </td>
@@ -55,12 +55,14 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Criança</th>
+                                        <th>Total de faltas</th>
                                         <th>Presença</th>
                                     </tr>                          
                                     @foreach($criancas as $crianca)
                                         <tr>     
                                             <td>{{$crianca->id}}</td>
                                             <td>{{$crianca->nomecompleto}}</td>
+                                            <td>{{ getTotalFaltas($crianca->id) }}</td>
                                             <input type="hidden" name="projeto_id[]" value="{{$chamada->projeto->id}}">
                                             <input type="hidden" name="crianca_id[]" value="{{$crianca->id}}">
                                             <td><input type="checkbox" name="presenca[{{$crianca->id}}][]" {{ criancaIsChecked($presencas, $crianca->id) }}></td>

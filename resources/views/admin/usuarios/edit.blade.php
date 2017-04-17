@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit User #{{ $user->id }}</div>
+                    <div class="panel-heading">Editar Usuário #{{ $user->uuid }}</div>
                     <div class="panel-body">
                         <a href="{{ url('/app/usuarios') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <br />
@@ -23,7 +23,7 @@
 
                         {!! Form::model($user, [
                             'method' => 'PATCH',
-                            'url' => ['/app/usuarios', $user->id],
+                            'url' => ['/app/usuarios', $user->uuid],
                             'class' => 'form-horizontal',
                             'files' => true
                         ]) !!}

@@ -56,7 +56,7 @@
                                     @foreach($chamadas as $item)
                                         <tr>
                                             <td>{{ $item->projeto->nome }}</td>
-                                            <td>{{ getData($item->datachamada) }}</td>
+                                            <td>{{ $item->datachamada }}</td>
                                             <td>{!! getStatusChamada($item->realizada) !!}</td>
                                             <td>
                                                 @if($item->realizada == 1)

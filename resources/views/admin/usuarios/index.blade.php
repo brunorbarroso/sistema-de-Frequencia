@@ -30,7 +30,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th><th>Email</th><th>Funcao</th><th>Actions</th>
+                                        <th>Nome</th><th>Email</th><th>Funcao</th><th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,11 +40,11 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ getFuncao($item->funcao) }}</td>
                                         <td>
-                                            <a href="{{ url('/app/usuarios/' . $item->id) }}" title="View User"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                            <a href="{{ url('/app/usuarios/' . $item->id . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                            <a href="{{ url('/app/usuarios/' . $item->uuid) }}" title="View User"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                            <a href="{{ url('/app/usuarios/' . $item->uuid . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
-                                                'url' => ['/app/usuarios', $item->id],
+                                                'url' => ['/app/usuarios', $item->uuid],
                                                 'style' => 'display:inline'
                                             ]) !!}
                                                 {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(

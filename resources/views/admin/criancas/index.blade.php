@@ -113,19 +113,25 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
+                                        <th>Cód.</th>
                                         <th>Nome completo</th>
                                         <th>Data de nascimento</th>
                                         <th>Idade</th>
-                                        <th>Actions</th>
+                                        <th>Faltas</th>
+                                        <th>Projeto</th>
+                                        <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @if(count($criancas)>0)
                                     @foreach($criancas as $item)
                                         <tr>
+                                            {{--<td>{{ $item->id }}</td>--}}
+                                            <td>{{ uuid() }}</td>
                                             <td>{{ $item->nomecompleto }}</td>
                                             <td>{{ $item->datanascimento }}</td>
                                             <td>{{ getIdade($item->datanascimento) }}</td>
+                                            <td>{{ getTotalFaltas($item->id) }}</td>
                                             <td>{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
                                             <td>
                                                 <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>

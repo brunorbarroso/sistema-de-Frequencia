@@ -10,7 +10,8 @@
         "appzcoder/crud-generator": "^2.0",
         "laravelcollective/html": "v5.2.*",
         "artesaos/cidadesbr": "^1.0",
-        "barryvdh/laravel-dompdf": "*"
+        "barryvdh/laravel-dompdf": "*",
+        "emadadly/laravel-uuid": "1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

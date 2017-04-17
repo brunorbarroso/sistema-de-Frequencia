@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Emadadly\LaravelUuid\Uuids;
 
 class User extends Authenticatable
 {
+    use Uuids;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -23,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+    * Indicates if the IDs are auto-incrementing.
+    *
+    * @var bool
+    */
+    public $incrementing = false;
 }

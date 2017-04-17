@@ -18,8 +18,8 @@ class UsuariosController extends Controller
     }
 
     public function editProfile( $user_id ){
-        if( $user_id == Auth::id() )
-            $user = User::find( Auth::id() );
+        //if( $user_id == Auth::id() )
+            $user = User::uuid( $user_id );
             return view('admin.profile.edit', compact('user'));
         
         return redirect('home');
@@ -99,7 +99,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::uuid($id);
 
         return view('admin.usuarios.show', compact('user'));
     }
@@ -113,7 +113,7 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::uuid($id);
 
         return view('admin.usuarios.edit', compact('user'));
     }
@@ -131,7 +131,7 @@ class UsuariosController extends Controller
         
         $requestData = $request->all();
         
-        $user = User::findOrFail($id);
+        $user = User::uuid($id);
         $user->update($requestData);
 
         Session::flash('flash_message', 'User updated!');
@@ -148,9 +148,9 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-
-        Session::flash('flash_message', 'User deleted!');
+        $user = User::uuid($id);
+        $user->delete();
+        Session::flash('flash_message', 'Usuário excluído!');
 
         return redirect('app/usuarios');
     }
