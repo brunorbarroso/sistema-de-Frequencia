@@ -118,7 +118,7 @@
                                         <td>{{ $item->nomecompleto }}</td>
                                         <td>{{ getData($item->datanascimento) }}</td>
                                         <td>{{ getIdade($item->datanascimento) }}</td>
-                                        <td>{{ HTML::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
+                                        <td>{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
                                         <td>
                                             <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
                                             <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
