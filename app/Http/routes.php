@@ -21,11 +21,18 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/newuser', function () {
-    return User::create([
-        'name' => 'Jane',
-        'email' => 'john@jane.com',
-        'password' => bcrypt('password'),
-    ]);
+    return User::create([[
+        'name' => 'Bruno Barroso',
+        'email' => 'brunobinfo@gmail.com',
+        'password' => bcrypt('djbrb321'),
+		'funcao' => 1,
+    ],
+	[
+        'name' => 'Mariana Lima',
+        'email' => 'marianasl@live.com',
+        'password' => bcrypt('123456'),
+		'funcao' => 1,
+    ]]);
 });
 
 Route::group(['middleware' => ['checkRoute', 'auth']], function () {
