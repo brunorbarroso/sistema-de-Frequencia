@@ -64,12 +64,14 @@
                             </span>
                         </div>
                         {!! Form::close() !!}
-
+                        
+                        @if(count($criancas)>0)
                         {!! Form::open([
                             'method'=>'GET',
                             'url' => ['app/imprimir/lista'],
                             'style' => 'display:inline'
                         ]) !!}
+
                         <?php $label = ""; ?>
                         <?php if(empty($_GET['project']) && empty($_GET['search'])): ?>
                             <?php $label = "todos"; ?>
@@ -97,6 +99,13 @@
                             <?php endif; ?>
                             
                         {!! Form::close() !!}
+                        @else
+                         {!! Form::button('<i class="fa fa-print" aria-hidden="true"></i> Imprimir', array(
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-warning btn-sm disabled',
+                                    'title' => 'Imprimir'
+                            )) !!}
+                        @endif
 
                         <br/>
                         <br/>
@@ -112,31 +121,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($criancas as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->nomecompleto }}</td>
-                                        <td>{{ $item->datanascimento }}</td>
-                                        <td>{{ getIdade($item->datanascimento) }}</td>
-                                        <td>{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
-                                        <td>
-                                            <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                            <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
-                                            {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/app/criancas', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
+                                @if(count($criancas)>0)
+                                    @foreach($criancas as $item)
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->nomecompleto }}</td>
+                                            <td>{{ $item->datanascimento }}</td>
+                                            <td>{{ getIdade($item->datanascimento) }}</td>
+                                            <td>{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
+                                            <td>
+                                                <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                                <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/app/criancas', $item->id],
+                                                    'style' => 'display:inline'
+                                                ]) !!}
                                                 {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
                                                         'title' => 'Delete Crianca',
                                                         'onclick'=>'return confirm("Confirmar exclusão?")'
                                                 )) !!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                                {!! Form::close() !!}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="5">Nenhuma criança cadastrada.</td>
                                     </tr>
-                                @endforeach
+                                @endif
                                 </tbody>
                             </table>
                             <div class="pagination-wrapper"> {!! $criancas->appends(['search' => Request::get('search')])->render() !!} </div>

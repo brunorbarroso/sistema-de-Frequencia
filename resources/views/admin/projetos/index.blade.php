@@ -39,31 +39,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($projetos as $item)
+                                @if(count($projetos)>0)
+                                    @foreach($projetos as $item)
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->nome }}</td>
+                                            <td>{{ $item->estado }}</td>
+                                            <td>{{ $item->cidades->nome }}</td>
+                                            <td>{{ $item->bairro }}</td>
+                                            <td>
+                                                <a href="{{ url('/app/projetos/' . $item->id) }}" title="View Projeto"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                                <a href="{{ url('/app/projetos/' . $item->id . '/edit') }}" title="Edit Projeto"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/app/projetos', $item->id],
+                                                    'style' => 'display:inline'
+                                                ]) !!}
+                                                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
+                                                            'type' => 'submit',
+                                                            'class' => 'btn btn-danger btn-xs',
+                                                            'title' => 'Delete Projeto',
+                                                            'onclick'=>'return confirm("Confirmar exclusão?")'
+                                                    )) !!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                 @else
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->nome }}</td>
-                                        <td>{{ $item->estado }}</td>
-                                        <td>{{ $item->cidades->nome }}</td>
-                                        <td>{{ $item->bairro }}</td>
-                                        <td>
-                                            <a href="{{ url('/app/projetos/' . $item->id) }}" title="View Projeto"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                            <a href="{{ url('/app/projetos/' . $item->id . '/edit') }}" title="Edit Projeto"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
-                                            {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/app/projetos', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
-                                                        'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete Projeto',
-                                                        'onclick'=>'return confirm("Confirmar exclusão?")'
-                                                )) !!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        <td colspan="5">Nenhum projeto cadastrado.</td>
                                     </tr>
-                                @endforeach
+                                @endif
                                 </tbody>
                             </table>
                             <div class="pagination-wrapper"> {!! $projetos->appends(['search' => Request::get('search')])->render() !!} </div>

@@ -38,34 +38,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($chamadas as $item)
+                                @if(count($chamadas)>0)
+                                    @foreach($chamadas as $item)
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->projeto->nome }}</td>
+                                            <td>{{ getData($item->datachamada) }}</td>
+                                            <td>{!! getStatusChamada($item->realizada) !!}</td>
+                                            <td>
+                                                @if($item->realizada == 1)
+                                                <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                                @else
+                                                <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-warning btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Fazer chamada</button></a>
+                                                @endif
+                                                <a href="{{ url('/app/chamadas/' . $item->id . '/edit') }}" title="Edit Chamada"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/app/chamadas', $item->id],
+                                                    'style' => 'display:inline'
+                                                ]) !!}
+                                                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
+                                                            'type' => 'submit',
+                                                            'class' => 'btn btn-danger btn-xs',
+                                                            'title' => 'Delete Chamada',
+                                                            'onclick'=>'return confirm("Confirmar exclusão?")'
+                                                    )) !!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                 @else
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->projeto->nome }}</td>
-                                        <td>{{ getData($item->datachamada) }}</td>
-                                        <td>{!! getStatusChamada($item->realizada) !!}</td>
-                                        <td>
-                                            @if($item->realizada == 1)
-                                            <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                            @else
-                                            <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-warning btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Fazer chamada</button></a>
-                                            @endif
-                                            <a href="{{ url('/app/chamadas/' . $item->id . '/edit') }}" title="Edit Chamada"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
-                                            {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/app/chamadas', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
-                                                        'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete Chamada',
-                                                        'onclick'=>'return confirm("Confirmar exclusão?")'
-                                                )) !!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        <td colspan="5">Nenhuma chamada realizada.</td>
                                     </tr>
-                                @endforeach
+                                @endif
                                 </tbody>
                             </table>
                             <div class="pagination-wrapper"> {!! $chamadas->appends(['search' => Request::get('search')])->render() !!} </div>
