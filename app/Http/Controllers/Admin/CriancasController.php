@@ -128,16 +128,31 @@ class CriancasController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $this->salvar_foto( $fields['foto'] );
         }
-        
-        $crianca = Crianca::create(['nomecompleto'=>$fields['nomecompleto'],
+
+        $rules = array(
+            'nomecompleto'          =>  'required',
+            'projeto_id'            =>  'required',
+            'datanascimento'        =>  'required'
+        );
+
+        $validator = Validator::make($fields, 
+                                    $rules,
+                                    ['required'=>'O campo :attribute é obrigatório']);
+
+        if ($validator->fails()) {
+            return Redirect::to('app/criancas')
+                ->withErrors($validator);
+        } else {
+            $crianca = Crianca::create(['nomecompleto'=>$fields['nomecompleto'],
                             'datanascimento'=>$fields['datanascimento'],
                             'mae'=>$fields['mae'],
                             'contato'=>$fields['contato'], 
                             'sexo'=>$fields['sexo'], 
                             'projeto_id'=>$fields['projeto_id'],
                             'foto'=>isset($foto)?$foto:""]);
-
-        Session::flash('flash_message', 'Crianca added!');
+            Session::flash('flash_message', 'Criança cadastrada com sucesso!');
+            return redirect('app/criancas');
+        }
 
         return redirect('app/criancas');
     }
@@ -189,16 +204,31 @@ class CriancasController extends Controller
             $foto = $fields['foto_name'];
         }
 
-		$crianca = Crianca::find($id);
-        $crianca->fill(['nomecompleto'=>$fields['nomecompleto'],
+        $rules = array(
+            'nomecompleto'          =>  'required',
+            'projeto_id'            =>  'required',
+            'datanascimento'        =>  'required'
+        );
+
+        $validator = Validator::make($fields, 
+                                    $rules,
+                                    ['required'=>'O campo :attribute é obrigatório']);
+
+        if ($validator->fails()) {
+            return Redirect::to('app/criancas')
+                ->withErrors($validator);
+        } else {
+            $crianca = Crianca::find($id);
+            $crianca->fill(['nomecompleto'=>$fields['nomecompleto'],
                         'datanascimento'=>$fields['datanascimento'],
                         'mae'=>$fields['mae'],
                         'contato'=>$fields['contato'], 
                         'sexo'=>$fields['sexo'], 
                         'projeto_id'=>$fields['projeto_id'],
                         'foto'=>isset($foto)?$foto:""]);
-
-        Session::flash('flash_message', 'Crianca updated!');
+            Session::flash('flash_message', 'Criança cadastrada com sucesso!');
+            return redirect('app/criancas');
+        }
 
         return redirect('app/criancas');
     }

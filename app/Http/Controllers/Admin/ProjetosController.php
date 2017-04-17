@@ -31,8 +31,6 @@ class ProjetosController extends Controller
             $projetos = Projeto::paginate($perPage);
         }
 
-        return $projetos;
-
         return view('admin.projetos.index', compact('projetos'));
     }
 
