@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Crianca;
 use App\Projeto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 use PDF;
 
