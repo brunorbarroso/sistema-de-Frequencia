@@ -33,7 +33,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $projeto->id }}</td>
                                     </tr>
-                                    <tr><th> Nome </th><td> {{ $projeto->nome }} </td></tr><tr><th> Estado </th><td> {{ $projeto->estado }} </td></tr><tr><th> Cidade </th><td> {{ $projeto->cidades->nome }} </td></tr>
+                                    <tr><th> Nome </th><td> {{ $projeto->projeto }} </td></tr><tr><th> Estado </th><td> {{ $projeto->estado }} </td></tr><tr><th> Cidade </th><td> {{ $projeto->cidades->nome }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
