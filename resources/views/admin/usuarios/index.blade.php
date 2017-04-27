@@ -40,16 +40,16 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ getFuncao($item->funcao) }}</td>
                                         <td>
-                                            <a href="{{ url('/app/usuarios/' . $item->uuid) }}" title="View User"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                            <a href="{{ url('/app/usuarios/' . $item->uuid . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                            <a href="{{ url('/app/usuarios/' . $item->uuid) }}" title="View User"><button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+                                            <a href="{{ url('/app/usuarios/' . $item->uuid . '/edit') }}" title="Edit User"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/app/usuarios', $item->uuid],
                                                 'style' => 'display:inline'
                                             ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
+                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
                                                         'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
+                                                        'class' => 'btn btn-danger',
                                                         'title' => 'Delete User',
                                                         'onclick'=>'return confirm("Confirmar exclusão?")'
                                                 )) !!}

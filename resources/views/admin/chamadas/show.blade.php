@@ -44,7 +44,7 @@
                         </div>
                         <div class="table-responsive">                          
                             <table class="table table-borderless">
-                                <caption>Lista de crianças</caption>
+                                <caption><h4>Lista de crianças</h4></caption>
                                 <tbody>
                                 @if(count($criancas)>0)
                                     {!! Form::open([
@@ -53,7 +53,7 @@
                                         'style' => 'display:inline'
                                     ]) !!}
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Cód.</th>
                                         <th>Criança</th>
                                         <th>Total de faltas</th>
                                         <th>Presença</th>

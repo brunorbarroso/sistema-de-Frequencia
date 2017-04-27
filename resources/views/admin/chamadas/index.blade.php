@@ -57,22 +57,26 @@
                                         <tr>
                                             <td>{{ $item->projeto->nome }}</td>
                                             <td>{{ $item->datachamada }}</td>
+                                            @if($item->realizada == 1)
                                             <td>{!! getStatusChamada($item->realizada) !!}</td>
+                                            @else
+                                            <td><a href="{{ url('/app/chamadas/' . $item->id) }}">{!! getStatusChamada($item->realizada) !!}</a></td>
+                                            @endif
                                             <td>
                                                 @if($item->realizada == 1)
-                                                <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                                <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                                 @else
-                                                <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-warning btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Fazer chamada</button></a>
+                                                <a href="{{ url('/app/chamadas/' . $item->id) }}" title="View Chamada"><button class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                                 @endif
-                                                <a href="{{ url('/app/chamadas/' . $item->id . '/edit') }}" title="Edit Chamada"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                <a href="{{ url('/app/chamadas/' . $item->id . '/edit') }}" title="Edit Chamada"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
                                                     'url' => ['/app/chamadas', $item->id],
                                                     'style' => 'display:inline'
                                                 ]) !!}
-                                                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
+                                                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
                                                             'type' => 'submit',
-                                                            'class' => 'btn btn-danger btn-xs',
+                                                            'class' => 'btn btn-danger',
                                                             'title' => 'Delete Chamada',
                                                             'onclick'=>'return confirm("Confirmar exclusão?")'
                                                     )) !!}

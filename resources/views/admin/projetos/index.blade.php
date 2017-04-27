@@ -46,16 +46,16 @@
                                             <td>{{ $item->cidades->nome }}</td>
                                             <td>{{ $item->bairro }}</td>
                                             <td>
-                                                <a href="{{ url('/app/projetos/' . $item->id) }}" title="View Projeto"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                                <a href="{{ url('/app/projetos/' . $item->id . '/edit') }}" title="Edit Projeto"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                <a href="{{ url('/app/projetos/' . $item->id) }}" title="View Projeto"><button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+                                                <a href="{{ url('/app/projetos/' . $item->id . '/edit') }}" title="Edit Projeto"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
                                                     'url' => ['/app/projetos', $item->id],
                                                     'style' => 'display:inline'
                                                 ]) !!}
-                                                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
+                                                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
                                                             'type' => 'submit',
-                                                            'class' => 'btn btn-danger btn-xs',
+                                                            'class' => 'btn btn-danger',
                                                             'title' => 'Delete Projeto',
                                                             'onclick'=>'return confirm("Confirmar exclusão?")'
                                                     )) !!}

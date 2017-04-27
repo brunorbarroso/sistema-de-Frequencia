@@ -23,6 +23,11 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        @media (max-width: 420px) {
+             .table-mobile { display:none }
+             /*.wrapper { width: 300px; }*/
+        }
     </style>
 </head>
 <body class="wrapper">

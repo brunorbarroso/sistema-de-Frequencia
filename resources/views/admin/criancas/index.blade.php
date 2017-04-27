@@ -109,16 +109,16 @@
 
                         <br/>
                         <br/>
-                        <div class="table-responsive">
+                        <div class="">
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>Cód.</th>
+                                        <th class="table-mobile">Cód.</th>
                                         <th>Nome completo</th>
-                                        <th>Data de nascimento</th>
-                                        <th>Idade</th>
-                                        <th>Faltas</th>
-                                        <th>Projeto</th>
+                                        <th class="table-mobile">Data de nascimento</th>
+                                        <th class="table-mobile">Idade</th>
+                                        <th class="table-mobile">Faltas</th>
+                                        <th class="table-mobile">Projeto</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
@@ -126,24 +126,23 @@
                                 @if(count($criancas)>0)
                                     @foreach($criancas as $item)
                                         <tr>
-                                            {{--<td>{{ $item->id }}</td>--}}
-                                            <td>{{ uuid() }}</td>
+                                            <td class="table-mobile">{{ $item->id }}</td>
                                             <td>{{ $item->nomecompleto }}</td>
-                                            <td>{{ $item->datanascimento }}</td>
-                                            <td>{{ getIdade($item->datanascimento) }}</td>
-                                            <td>{{ getTotalFaltas($item->id) }}</td>
-                                            <td>{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
+                                            <td class="table-mobile">{{ $item->datanascimento }}</td>
+                                            <td class="table-mobile">{{ getIdade($item->datanascimento) }}</td>
+                                            <td class="table-mobile">{{ getTotalFaltas($item->id) }}</td>
+                                            <td class="table-mobile">{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
                                             <td>
-                                                <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                                <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+                                                <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
                                                     'url' => ['/app/criancas', $item->id],
                                                     'style' => 'display:inline'
                                                 ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Excluir', array(
+                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
                                                         'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
+                                                        'class' => 'btn btn-danger',
                                                         'title' => 'Delete Crianca',
                                                         'onclick'=>'return confirm("Confirmar exclusão?")'
                                                 )) !!}

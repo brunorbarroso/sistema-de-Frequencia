@@ -31,7 +31,7 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $crianca->id }}</td>
+                                        <th>Cód.</th><td>{{ $crianca->id }}</td>
                                     </tr>
                                     <tr><th> Nome completo </th><td> {{ $crianca->nomecompleto }} </td></tr>
                                     <tr><th> Data de nascimento </th><td> {{ getData($crianca->datanascimento) }} </td></tr>

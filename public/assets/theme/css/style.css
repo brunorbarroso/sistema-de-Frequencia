@@ -13,7 +13,8 @@
     .btn {
       white-space: normal; }
       .btn + .btn {
-        margin-left: 0; } }
+        margin-left: 0; } 
+  }
 
 .bg-primary {
   background-color: #c0a375 !important; }
