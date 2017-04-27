@@ -37,7 +37,7 @@
                                         <th> Data chamada </th><td> {{ $chamada->datachamada }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Projeto </th><td> {{ $chamada->projeto->nome }} </td>
+                                        <th> Projeto </th><td> {{ $chamada->projeto->projeto }} </td>
                                     </tr>
                                 </tbody>
                             </table>
