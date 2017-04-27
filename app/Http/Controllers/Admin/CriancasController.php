@@ -18,7 +18,7 @@ class CriancasController extends Controller
     protected $projetos;
 
     public function __construct(){ 
-        $this->projetos = Projeto::lists('nome', 'id');
+        $this->projetos = Projeto::lists('projeto', 'id');
         $this->projetos->prepend('Filtrar por projeto', '');
     }
 
@@ -221,7 +221,7 @@ class CriancasController extends Controller
                 ->withErrors($validator);
         } else {
             $crianca = Crianca::find($id);
-            $crianca->fill(['nomecompleto'=>$fields['nomecompleto'],
+            $crianca->update(['nomecompleto'=>$fields['nomecompleto'],
                         'datanascimento'=>$fields['datanascimento'],
                         'mae'=>$fields['mae'],
                         'contato'=>$fields['contato'], 

@@ -131,7 +131,7 @@
                                             <td class="table-mobile">{{ $item->datanascimento }}</td>
                                             <td class="table-mobile">{{ getIdade($item->datanascimento) }}</td>
                                             <td class="table-mobile">{{ getTotalFaltas($item->id) }}</td>
-                                            <td class="table-mobile">{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->nome ) }}</td>
+                                            <td class="table-mobile">{{ Html::link( URL::to('/app/criancas?project='.$item->projetos->id), $item->projetos->projeto ) }}</td>
                                             <td>
                                                 <a href="{{ url('/app/criancas/' . $item->id) }}" title="View Crianca"><button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                                 <a href="{{ url('/app/criancas/' . $item->id . '/edit') }}" title="Edit Crianca"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
