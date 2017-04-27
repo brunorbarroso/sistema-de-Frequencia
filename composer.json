@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
+        "doctrine/dbal": "~2.3",
         "appzcoder/crud-generator": "^2.0",
         "laravelcollective/html": "v5.2.*",
         "artesaos/cidadesbr": "^1.0",
