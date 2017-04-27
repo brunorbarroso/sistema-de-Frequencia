@@ -24,7 +24,7 @@ class ChamadasController extends Controller
     }
 
     public function setProjetos(){
-        $this->projetos = Projeto::lists('nome', 'id');
+        $this->projetos = Projeto::lists('projeto', 'id');
     }
 
     public function getProjetos(){
