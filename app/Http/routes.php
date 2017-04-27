@@ -35,6 +35,7 @@ Route::group(['middleware' => ['checkRoute', 'auth']], function () {
 	Route::put('app/profile', 'Admin\\UsuariosController@updateProfile');
 	Route::resource('app/usuarios', 'Admin\\UsuariosController');
 	Route::resource('app/projetos', 'Admin\\ProjetosController');
+	Route::get('projetos/todos', 'Admin\\ProjetosController@all');
 	Route::resource('app/criancas', 'Admin\\CriancasController');
 	Route::resource('app/chamadas', 'Admin\\ChamadasController');
 	Route::put('app/fazer_chamda/chamada/{id}', 'Admin\\ChamadasController@fazer_chamada');
