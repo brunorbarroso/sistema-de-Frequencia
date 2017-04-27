@@ -41,7 +41,7 @@
                                 @if(count($projetos)>0)
                                     @foreach($projetos as $item)
                                         <tr>
-                                            <td>{{ $item->nome }}</td>
+                                            <td>{{ $item->projeto }}</td>
                                             <td>{{ $item->estado }}</td>
                                             <td>{{ $item->cidades->nome }}</td>
                                             <td>{{ $item->bairro }}</td>

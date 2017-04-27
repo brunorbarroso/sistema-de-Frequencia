@@ -25,7 +25,7 @@ class Projeto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome', 'estado', 'cidade_id', 'bairro'];
+    protected $fillable = ['projeto', 'estado', 'cidade_id', 'bairro'];
 
     public function cidades(){
         return $this->BelongsTo('App\Cidade', 'cidade_id', 'id');

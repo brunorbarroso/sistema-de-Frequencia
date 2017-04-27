@@ -1,8 +1,8 @@
 <div class="form-group {{ $errors->has('nome') ? 'has-error' : ''}}">
     {!! Form::label('nome', 'Nome', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('nome', null, ['class' => 'form-control']) !!}
-        {!! $errors->first('nome', '<p class="help-block">:message</p>') !!}
+        {!! Form::text('projeto', null, ['class' => 'form-control']) !!}
+        {!! $errors->first('projeto', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('estado') ? 'has-error' : ''}}">
     {!! Form::label('estado', 'Estado', ['class' => 'col-md-4 control-label']) !!}

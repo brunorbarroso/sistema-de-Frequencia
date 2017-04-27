@@ -20,10 +20,10 @@ class ProjetosController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 15;
+        $perPage = 10;
 
         if (!empty($keyword)) {
-            $projetos = Projeto::where('nome', 'LIKE', "%$keyword%")
+            $projetos = Projeto::where('projeto', 'LIKE', "%$keyword%")
 				->orWhere('estado', 'LIKE', "%$keyword%")
 				->orWhere('bairro', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
@@ -126,5 +126,13 @@ class ProjetosController extends Controller
         Session::flash('flash_message', 'Projeto deleted!');
 
         return redirect('app/projetos');
+    }
+
+
+    public function all()
+    {
+        $perPage = 10;
+        $projetos = Projeto::paginate($perPage);
+        return $projetos;
     }
 }
